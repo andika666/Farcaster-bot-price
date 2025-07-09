@@ -30,10 +30,10 @@
 </head>
 <body>
   <h1>🪙 Meme Coin Price (Base)</h1>
-  <p>Masukkan nama token (cth: <b>pepe</b>, <b>based</b>)</p>
-  <input type="text" id="tokenInput" placeholder="Nama token (tanpa $)" />
+  <p>Enter token name (e.g. <b>pepe</b>, <b>based</b>)</p>
+  <input type="text" id="tokenInput" placeholder="Token name (no $ sign)" />
   <br>
-  <button onclick="getPrice()">Cek Harga</button>
+  <button onclick="getPrice()">Get Price</button>
   <div id="price"></div>
 
   <script>
@@ -48,7 +48,7 @@
 
         const pair = data.pairs.find(p => p.chainId === "base");
         if (!pair) {
-          priceDiv.innerHTML = `Token "${token}" tidak ditemukan di jaringan Base.`;
+          priceDiv.innerHTML = `Token "${token}" not found on Base network.`;
           return;
         }
 
@@ -56,11 +56,11 @@
         const change = pair.priceChange.h24;
         priceDiv.innerHTML = `
           <b>${pair.baseToken.name} (${pair.baseToken.symbol})</b><br/>
-          Harga: $${price}<br/>
-          Perubahan 24 jam: ${change}%
+          Price: $${price}<br/>
+          24h Change: ${change}%
         `;
       } catch (err) {
-        priceDiv.innerHTML = "Gagal mengambil harga. Coba lagi.";
+        priceDiv.innerHTML = "Failed to fetch price. Please try again.";
       }
     }
   </script>
